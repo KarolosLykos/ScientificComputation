@@ -1,0 +1,214 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>erwtima3apinakes</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-12-14"><meta name="DC.source" content="erwtima3apinakes.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput">n=512;
+
+y1=linspace(-1,1,512);
+<span class="keyword">for</span> k=1:n
+    y(k)=cos((k*pi)/(n+1)*k);
+<span class="keyword">end</span>
+
+A1 = randn(n);
+A2 = tril(A1);
+[L,U] = lu(A1);
+A3 = U;
+A4 = gfpp(n);
+A5 = vander(y1);
+A6 = vander(y);
+
+deikths_kat(1,1) = cond(A1,inf);
+<span class="comment">%gia tn prwto pinaka</span>
+
+deikths_kat(1,2) = cond(A2,inf);
+<span class="comment">%gia tn anw trigwniko</span>
+
+deikths_kat(1,3) = cond(A3,inf);
+<span class="comment">%gia anw trigwnika pou epistrefei h sunarthsh lu</span>
+
+deikths_kat(1,4) = cond(A4,inf);
+<span class="comment">%me thn sunarthsh qfpp</span>
+
+
+deikths_kat(1,5) = cond(A5,inf);
+<span class="comment">%vandermonde</span>
+deikths_kat(1,6) = cond(A6,inf);
+<span class="comment">%vandermonde chebyshev</span>
+
+x=ones(n,1);
+b1=A1*x;
+b2=A2*x;
+b3=A3*x;
+
+b4=A4*x;
+b5=A5*x;
+b6=A6 *x;
+
+x2_1=mldivide(A1,b1);
+front_error(1,1) = (norm(x2_1-x,inf)/norm(x,inf));
+back_error(1,1) = (norm(A1*x2_1-b1,inf)/((norm(A1,inf))*(norm(x2_1,inf))+(norm(b1,inf))));
+
+x2_2=mldivide(A2,b2);
+front_error(1,2) = (norm(x2_1-x,inf)/norm(x,inf));
+back_error(1,2) = (norm(A1*x2_1-b2,inf)/((norm(A2,inf))*(norm(x2_2,inf))+(norm(b2,inf))));
+
+x2_3=mldivide(A3,b3);
+front_error(1,3) = (norm(x2_3-x,inf)/norm(x,inf));
+back_error(1,3) = (norm(A1*x2_3-b3,inf)/((norm(A3,inf))*(norm(x2_3,inf))+(norm(b3,inf))));
+
+x2_4=mldivide(A4,b4);
+front_error(1,4) = (norm(x2_4-x,inf)/norm(x,inf));
+back_error(1,4) = (norm(A1*x2_4-b4,inf)/((norm(A4,inf))*(norm(x2_4,inf))+(norm(b4,inf))));
+
+x2_5=mldivide(A5,b5);
+front_error(1,5) = (norm(x2_5-x,inf)/norm(x,inf));
+back_error(1,5) = (norm(A1*x2_5-b5,inf)/((norm(A5,inf))*(norm(x2_5,inf))+(norm(b5,inf))));
+
+x2_6=mldivide(A6,b6);
+front_error(1,6) = (norm(x2_6-x,inf)/norm(x,inf));
+back_error(1,6) = (norm(A1*x2_6-b6,inf)/((norm(A6,inf))*(norm(x2_6,inf))+(norm(b6,inf))));
+</pre><pre class="codeoutput">Warning: Matrix is close to singular or badly scaled. Results may be inaccurate.
+RCOND =  1.925047e-21. 
+Warning: Matrix is close to singular or badly scaled. Results may be inaccurate.
+RCOND = 2.514368e-225. 
+Warning: Matrix is close to singular or badly scaled. Results may be inaccurate.
+RCOND = 1.203252e-168. 
+Warning: Matrix is close to singular or badly scaled. Results may be inaccurate.
+RCOND = 2.514368e-225. 
+Warning: Matrix is close to singular or badly scaled. Results may be inaccurate.
+RCOND = 1.203252e-168. 
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+n=512;
+
+y1=linspace(-1,1,512);
+for k=1:n
+    y(k)=cos((k*pi)/(n+1)*k);
+end
+
+A1 = randn(n);
+A2 = tril(A1);
+[L,U] = lu(A1);
+A3 = U;
+A4 = gfpp(n);
+A5 = vander(y1);
+A6 = vander(y);
+
+deikths_kat(1,1) = cond(A1,inf);
+%gia tn prwto pinaka 
+
+deikths_kat(1,2) = cond(A2,inf);
+%gia tn anw trigwniko
+
+deikths_kat(1,3) = cond(A3,inf);
+%gia anw trigwnika pou epistrefei h sunarthsh lu
+
+deikths_kat(1,4) = cond(A4,inf);
+%me thn sunarthsh qfpp
+
+
+deikths_kat(1,5) = cond(A5,inf);
+%vandermonde 
+deikths_kat(1,6) = cond(A6,inf);
+%vandermonde chebyshev
+
+x=ones(n,1);
+b1=A1*x;
+b2=A2*x;
+b3=A3*x;
+
+b4=A4*x;
+b5=A5*x;
+b6=A6 *x;
+
+x2_1=mldivide(A1,b1);
+front_error(1,1) = (norm(x2_1-x,inf)/norm(x,inf));
+back_error(1,1) = (norm(A1*x2_1-b1,inf)/((norm(A1,inf))*(norm(x2_1,inf))+(norm(b1,inf))));
+
+x2_2=mldivide(A2,b2);
+front_error(1,2) = (norm(x2_1-x,inf)/norm(x,inf));
+back_error(1,2) = (norm(A1*x2_1-b2,inf)/((norm(A2,inf))*(norm(x2_2,inf))+(norm(b2,inf))));
+
+x2_3=mldivide(A3,b3);
+front_error(1,3) = (norm(x2_3-x,inf)/norm(x,inf));
+back_error(1,3) = (norm(A1*x2_3-b3,inf)/((norm(A3,inf))*(norm(x2_3,inf))+(norm(b3,inf))));
+
+x2_4=mldivide(A4,b4);
+front_error(1,4) = (norm(x2_4-x,inf)/norm(x,inf));
+back_error(1,4) = (norm(A1*x2_4-b4,inf)/((norm(A4,inf))*(norm(x2_4,inf))+(norm(b4,inf))));
+
+x2_5=mldivide(A5,b5);
+front_error(1,5) = (norm(x2_5-x,inf)/norm(x,inf));
+back_error(1,5) = (norm(A1*x2_5-b5,inf)/((norm(A5,inf))*(norm(x2_5,inf))+(norm(b5,inf))));
+
+x2_6=mldivide(A6,b6);
+front_error(1,6) = (norm(x2_6-x,inf)/norm(x,inf));
+back_error(1,6) = (norm(A1*x2_6-b6,inf)/((norm(A6,inf))*(norm(x2_6,inf))+(norm(b6,inf))));
+ 
+
+
+##### SOURCE END #####
+--></body></html>
